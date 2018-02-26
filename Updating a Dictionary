@@ -1,0 +1,69 @@
+#include<iostream>
+#include<string>
+#include<map>
+#include<set>
+using namespace std ;
+int main ()
+{
+	int t;
+	cin>>t;
+	while(t--){
+		set<string>s1,s2,s3;    //+s1,-s2,*s3
+	map<string,string>first;
+	map<string,string>second;
+	for(int k=0;k<2;k++){
+	string s;
+	cin>>s;
+	s.erase(0,1); s.erase(s.length()-1,1);
+	int i=0;
+	for(;i<s.length();i++){
+		string key,value;
+		for(;s[i]!=':'&&i<s.length();i++)  //get key
+			key+=s[i];
+		for(++i;i<s.length()&&s[i]!=',';i++)  //get value
+			value+=s[i];
+		if(k==0)first[key]=value;
+		else second[key]=value;
+	    }
+	  }
+	for(auto it=first.begin();it!=first.end();it++)
+		if(second.count(it->first)){
+			if(second[it->first]!=it->second)
+				s3.insert(it->first);
+		}
+		else s2.insert(it->first);  
+		for(auto it=second.begin();it!=second.end();it++)
+			if(first.count(it->first)){
+				if(first[it->first]!=it->second)
+					s3.insert(it->first);
+			}
+			else s1.insert(it->first);
+			bool vi=false;
+			if(s1.empty()&&s2.empty()&&s3.empty()){ puts("No changes\n");continue;}
+			for(auto it=s1.begin();it!=s1.end();it++){
+				if(!vi)cout<<"+",vi=true;
+				cout<<*it;
+				if(++it!=s1.end())cout<<",";
+				it--;
+             	}
+			if(vi)cout<<endl;
+			vi=false;
+			for(auto it=s2.begin();it!=s2.end();it++){
+				if(!vi)cout<<"-",vi=true;
+				cout<<*it;
+				if(++it!=s2.end())cout<<",";
+				it--;
+             	}
+			if(vi)cout<<endl;
+			vi=false;
+			for(auto it=s3.begin();it!=s3.end();it++){
+				if(!vi)cout<<"*",vi=true;
+				cout<<*it;
+				if(++it!=s3.end())cout<<",";
+				it--;
+             	}
+			if(vi)cout<<endl;
+			cout<<endl;
+	}
+return 0;
+}
