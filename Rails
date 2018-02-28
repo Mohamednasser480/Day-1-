@@ -1,0 +1,30 @@
+#include<iostream>
+#include<queue>
+#include<stack>
+using namespace std;
+int main ()
+{
+	int n ;
+	while(cin>>n&&n){
+		int m;
+		while(cin>>m&&m){
+		bool ans=true;
+	queue<int>q;
+	stack<int>s;
+	q.push(m);
+	for(int i=1;i<n;i++){int tmp; cin>>tmp; q.push(tmp); }
+	int i=1;
+	while(!q.empty()&&ans){
+		if(q.front()==i){i++; q.pop();}
+		else if(q.front()>i){ s.push(i); i++; }
+		else {
+			if(s.top()==q.front()){ s.pop(); q.pop();  } 
+			else ans=false;
+		 }
+	    }
+	    (ans)?cout<<"Yes\n":cout<<"No\n";
+		}
+	   cout<<endl;
+	}
+	return 0;
+}
