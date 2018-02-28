@@ -1,0 +1,31 @@
+#include<iostream>
+#include<vector>
+#include<map>
+#include<algorithm>
+using namespace std;
+int main ()
+{
+	int n,m;
+	while(cin>>n&&cin>>m&&n){
+	vector<int>v(n);
+	map<int,pair<vector<int>,vector<int>>>mp;
+	for(int i=0;i<n;i++)
+		cin>>v[i];
+	for(int i=0;i<n;i++){
+		if(!(v[i]&1))
+			mp[v[i]%m].first.push_back(v[i]);
+		else mp[v[i]%m].second.push_back(v[i]);
+	}
+	cout<<n<<" "<<m<<endl;
+	for(auto it=mp.begin();it!=mp.end();it++){
+		sort(it->second.first.begin(),it->second.first.end());
+		sort(it->second.second.begin(),it->second.second.end());
+		for(int i=it->second.second.size()-1;i>=0;i--)
+		    cout<<it->second.second[i]<<endl;
+		for(auto it_v=it->second.first.begin();it_v!=it->second.first.end();it_v++)
+			cout<<*it_v<<endl;
+	  }
+	}
+        cout<<0<<" "<<0<<endl;
+	return 0;
+}
