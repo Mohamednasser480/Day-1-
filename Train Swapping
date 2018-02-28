@@ -1,0 +1,26 @@
+#include<iostream>
+#include<sstream>
+#include<vector>
+#include<algorithm>
+#include<fstream>
+using namespace std;
+int main ()
+{
+	/*ofstream myfile;
+	myfile.open("ans",ios::out);*/
+	int t;
+	scanf("%d",&t);
+	while(t--){
+		int n;
+	scanf("%d",&n);
+	vector<int>v(n);
+	for(int i=0;i<n;i++)
+	scanf("%d",&v[i]);
+	int ans=0;
+	for(int i=0;i<n;i++)
+		for(int j=i+1;j<n;j++)
+			if(v[i]>v[j])ans++;
+	/*myfile<<"Optimal train swapping takes "<<ans<<" swaps.\n",*/printf("Optimal train swapping takes %d swaps.\n",ans);
+	}
+	return 0;
+}
