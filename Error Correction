@@ -1,0 +1,44 @@
+#include<iostream>
+using namespace std;
+bool ok(char **x,int t);
+int main ()
+{
+	int t;
+	while(cin>>t&&t){
+	char **x=new char*[t];
+	for(int i=0;i<t;i++)
+		x[i]=new char[t];
+	for(int i=0;i<t;i++)
+		for(int j=0;j<t;j++)
+			cin>>x[i][j];
+	bool find=false;
+	if(ok(x,t)){ cout<<"OK\n"; continue; }
+	else {
+	for(int i=0;i<t&&!find;i++)
+		for(int j=0;j<t&&!find;j++){
+		 x[i][j]=1-x[i][j];
+		 if(ok(x,t)){cout<<"Change bit ("<<i+1<<","<<j+1<<")"<<endl; find=true; }
+		 else x[i][j]=1-x[i][j];
+		   }
+    	 }
+	  if(!find)cout<<"Corrupt"<<endl;
+	}
+	return 0;
+}
+bool ok(char **x,int t){
+	for(int i=0;i<t;i++){
+		int count =0;
+	for(int j=0;j<t;j++)
+		count+=x[i][j];
+	if(count&1)
+		return false;
+	}
+	for(int i=0;i<t;i++){
+		int count =0;
+	for(int j=0;j<t;j++)
+		count+=x[j][i];
+	if(count&1)
+		return false;
+	}
+	return true;
+}
