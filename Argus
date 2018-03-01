@@ -1,0 +1,33 @@
+#include<iostream>
+#include<queue>
+#include<map>
+#include<string>
+#include<set>
+using namespace std;
+int main ()
+{
+	map<int,int>mp;
+	string s;
+	set<pair<int,int>>st;
+	queue<int>ans;
+	while(cin>>s&&s!="#"){
+	int n,m;
+	cin>>n>>m;
+	mp[n]=m;
+	st.insert(pair<int,int>(m,n));
+	}
+	int n;
+	cin>>n;
+	for(int i=0;i<n;i++){
+		ans.push(st.begin()->second);
+		pair<int,int>p(st.begin()->first+mp[st.begin()->second],st.begin()->second);
+		st.erase(st.begin());
+		st.insert(p);
+	}
+	while(!ans.empty()){
+		cout<<ans.front()<<endl;
+		ans.pop();
+	}
+	return 0;
+
+}
