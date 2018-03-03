@@ -1,0 +1,108 @@
+#include<iostream>
+#include<map>
+#include<string>
+using namespace std;
+void one_digit(map<string,int>&mp);
+void two_digits(map<string,int>&mp);
+void three_digits(map<string,int>&mp);
+void four_digits(map<string,int>&mp);
+void five_digits(map<string,int>&mp);
+int c=1;
+int main (){
+	map<string,int>mp;
+	one_digit(mp);
+	two_digits(mp);
+	three_digits(mp);
+	four_digits(mp);
+	five_digits(mp);
+	string s;
+	while(cin>>s){
+		if(mp.count(s)==0)cout<<0<<endl;
+	    else cout<<mp[s]<<endl; 
+	}
+
+	return 0;
+}
+void one_digit(map<string,int>&mp){
+	string s="a";
+	while(s[0]<=122){
+	mp[s]=c++;
+	s[0]++;
+	}
+}
+void two_digits(map<string,int>&mp){
+  string s="ab";
+  while(s[0]<122){
+   mp[s]=c++;
+  if(s[1]<122)s[1]++;
+  else{ s[0]++; s[1]=s[0]+1; }
+   }
+}
+void three_digits(map<string,int>&mp){
+	string s="abc";
+	while(s[0]<='x'){
+		while(s[1]<='y'){
+			while(s[2]<='z'){
+				mp[s]=c++;
+				s[2]++;
+			}
+			s[1]++; 
+			s[2]=s[1]+1;
+		}
+		s[0]++;
+		s[1]=s[0]+1;
+		s[2]=s[1]+1;
+	}
+}
+void four_digits(map<string,int>&mp){
+	string s="abcd";
+	while(s[0]<='w'){
+		while(s[1]<='x'){
+			while(s[2]<='y'){
+				while(s[3]<='z'){
+				mp[s]=c++;
+				s[3]++;
+			}
+			s[2]++; 
+			s[3]=s[2]+1;
+		}
+		s[1]++;
+		s[2]=s[1]+1;
+		s[3]=s[2]+1;
+	 }
+		s[0]++;
+		s[1]=s[0]+1;
+		s[2]=s[1]+1;
+		s[3]=s[2]+1;
+  }
+}
+void five_digits(map<string,int>&mp){
+		string s="abcde";
+	while(s[0]<='v'){
+		while(s[1]<='w'){
+			while(s[2]<='x'){
+				while(s[3]<='y'){
+					while(s[4]<='z'){
+				mp[s]=c++;
+				s[4]++;
+			}
+			s[3]++; 
+			s[4]=s[3]+1;
+		}
+		s[2]++;
+		s[3]=s[2]+1;
+		s[4]=s[3]+1;
+	 }
+		s[1]++;
+		s[2]=s[1]+1;
+		s[3]=s[2]+1;
+		s[4]=s[3]+1;
+      }
+		s[0]++;
+		s[1]=s[0]+1;
+		s[2]=s[1]+1;
+		s[3]=s[2]+1;
+		s[4]=s[3]+1;
+		s[5]=s[4]+1;
+	}
+}
